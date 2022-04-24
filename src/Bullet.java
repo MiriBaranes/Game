@@ -14,6 +14,7 @@ public class Bullet {
         this.bulletHead = new HalfC(x, y, WIDTH, HEIGHT, 360, 180, Color.CYAN);
     }
 
+
     public void paint(Graphics graphics) {
         this.body.paint(graphics);
         this.bulletHead.paint(graphics);

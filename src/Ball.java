@@ -30,6 +30,9 @@ public class Ball extends Circle {
         speedX = -ball.speedX;
         speedY = ball.speedY;
     }
+    public static void startHp(){
+        startHp=1;
+    }
 
     public Ball(int x, int y, int hp, Color color) {
         this(x,

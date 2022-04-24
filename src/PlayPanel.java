@@ -27,7 +27,7 @@ public class PlayPanel extends BasicJPanel {
         this.computerBall = new ArrayList<>();
         this.bullets = new ArrayList<>();
         this.allRunnableMethods = new ArrayList<>();
-        this.cannon = new Cannon(this.getWidth(), this.getHeight());
+        this.cannon = new Cannon();
         this.spaceDetector = new SpaceListener();
         this.spentLives = 0;
         this.points = 0;

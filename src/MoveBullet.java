@@ -15,14 +15,19 @@ public class MoveBullet extends MyRunnable {
     }
 
     @Override
-    public void _run() {
-        if (spaceDetector.isPressed()) {
-            Bullet bullet = new Bullet(cannon.getBodyX() + Cannon.CANNON_W/2, cannon.getBodyY());
-            synchronized (bullets) {
-                if (this.bullets.size() == 0)
-                    this.bullets.add(bullet);
+        public void _run() {
+            if (spaceDetector.isPressed()) {
+                Bullet bullet1 = new Bullet(cannon.getGun1().getX(), cannon.getGun1().getY());
+                Bullet bullet2 = new Bullet(cannon.getGun2().getX(), cannon.getGun2().getY());
+                Bullet bullet3 = new Bullet(cannon.getGun3().getX(), cannon.getGun3().getY());
+                synchronized (bullets) {
+                    if (this.bullets.size() == 0) {
+                        this.bullets.add(bullet1);
+                        this.bullets.add(bullet2);
+                        this.bullets.add(bullet3);
+                    }
+                }
             }
-        }
         ArrayList<Ball> balls = myPlay.getComputerBall();
         synchronized (balls) {
             synchronized (bullets) {
