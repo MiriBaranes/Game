@@ -4,14 +4,15 @@ import java.util.Stack;
 
 public class MovementPlayer implements KeyListener {
     private Cannon player;
-
-    private Stack<Integer> pressedKeys = new Stack<>();
+    private Stack<Integer> pressedKeys;
     private static final int ZERO = (KeyEvent.VK_LEFT + KeyEvent.VK_RIGHT) / 2;
 
 
     public MovementPlayer(Cannon player) {
+        this.pressedKeys= new Stack<>();
         this.player = player;
         pressedKeys.push(ZERO);
+
     }
 
     public void keyTyped(KeyEvent e) {

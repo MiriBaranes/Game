@@ -26,6 +26,7 @@ public class MovePlayer extends MyRunnable {
             for (Ball ball : balls) {
                 if (this.myPlay.getCannon().checkCollision(ball)) {
                     lost = true;
+                    ball.up();
                     break;
                 }
             }
@@ -34,16 +35,10 @@ public class MovePlayer extends MyRunnable {
             if (!touching) {
                 myPlay.getCannon().lost(this.myPlay.getLife());
                 myPlay.hit();
-//                myPlay.setLivesLeft();
-
-                if (this.myPlay.getLife() >= 3) {
-                    this.myPlay.stop();
-                }
             }
             this.touching = true;
         } else this.touching = false;
-
-        if (this.myPlay.getLife() >= 3) {
+        if (myPlay.isGameOver()){
             this.myPlay.stop();
         }
     }

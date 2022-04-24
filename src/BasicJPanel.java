@@ -19,7 +19,5 @@ public class BasicJPanel extends JPanel {
         jLabel.setBounds(0,y,this.getWidth(),h);
         this.add(jLabel);
     }
-    public void hideAll(){
-        this.setVisible(false);
-    }
+
 }

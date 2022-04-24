@@ -2,9 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.function.Supplier;
 
 public class PlayPanel extends BasicJPanel {
     public static final int START_LIVES = 3;
+    private static final int MAX_LEVEL = 10;
+
 
     private SpaceListener spaceDetector;
     private ArrayList<Bullet> bullets;
@@ -15,52 +18,53 @@ public class PlayPanel extends BasicJPanel {
     private int points;
     private int level;
     private JLabel levelText;
-    private ImageIcon imageIcon;
+    private ImageIcon backGround;
 
 
     public PlayPanel(int x, int y, int width, int height) {
         super(x, y, width, height, Color.WHITE);
         this.setBounds(x, y, width, height);
         this.computerBall = new ArrayList<>();
-        this.bullets=new ArrayList<>();
-        this.allRunnableMethods=new ArrayList<>();
-        this.cannon = new Cannon(this.getWidth(),this.getHeight());
+        this.bullets = new ArrayList<>();
+        this.allRunnableMethods = new ArrayList<>();
+        this.cannon = new Cannon(this.getWidth(), this.getHeight());
         this.spaceDetector = new SpaceListener();
-        SpaceListener movement = new SpaceListener();
         this.spentLives = 0;
         this.points = 0;
-        this.level=1;
-        this.imageIcon= new ImageIcon("ff76983a-95d0-47bb-be96-1d212961f46d.jpg");
-        this.addKeyListener(movement);
+        this.level = 1;
+        this.backGround = new ImageIcon("img.png");
         this.addKeyListener(spaceDetector);
-       initPlay();
-
+        initPlay();
     }
-    public void initPlay(){
+
+    public void initPlay() {
         movePlayer();
         moveBullet();
         this.addLastBall();
         moveComputerBallLoop();
         message();
+    }
 
+    public void setLevelText() {
+        this.levelText.setText("Level  :" + this.level + "\n" + "   Lives left: " + (START_LIVES - this.spentLives)
+                + "   Score: " + this.points);
     }
-    public void  setLevelText(){
-        this.levelText.setText("Level  :"+this.level+"\n"+"   Lives left: "+(START_LIVES - this.spentLives)
-        +"   Score: "+this.points);
-    }
-    public void message(){
-        this.levelText=new JLabel("Level: "+this.level+"    Lives left: "+(START_LIVES - this.spentLives)
-                +"   Score: "+this.points,SwingConstants.CENTER);
-        levelText.setBounds(0,0,this.getWidth(),Const.FONT.getSize());
+
+    public void message() {
+        this.levelText = new JLabel("Level: " + this.level + "    Lives left: " + (START_LIVES - this.spentLives)
+                + "   Score: " + this.points, SwingConstants.CENTER);
+        levelText.setBounds(0, 0, this.getWidth(), Const.FONT.getSize());
         levelText.setFont(Const.FONT);
-        levelText.setForeground(Color.green.darker());
+        levelText.setForeground(Color.red.darker());
         this.add(levelText);
     }
+
     public void setPoints() {
         this.points++;
         setLevelText();
     }
-    public void setLevel(){
+
+    public void setLevel() {
         this.level++;
         setLevelText();
     }
@@ -76,7 +80,6 @@ public class PlayPanel extends BasicJPanel {
     public ArrayList<Bullet> getBullets() {
         return this.bullets;
     }
-
 
     public void moveBullet() {
         MoveBullet moveBullet = new MoveBullet(this, this.cannon, this.spaceDetector);
@@ -96,20 +99,29 @@ public class PlayPanel extends BasicJPanel {
         new Thread(moveBall).start();
     }
 
+    public boolean isGameOver() {
+        return this.getLife() == START_LIVES || this.level > MAX_LEVEL;
+    }
+
     public void stop() {
         for (MyRunnable myRunnable : this.allRunnableMethods) {
             myRunnable.stop();
         }
-        BasicJPanel gameOver = new BasicJPanel(0, this.getHeight() / 2 - 100, this.getWidth(), 100, Color.RED);
-        gameOver.title("Game over!", 0, gameOver.getHeight());
-        this.add(gameOver);
+        BasicJPanel message = new BasicJPanel(0, this.getHeight() / 2 - 100, this.getWidth(), 100, Color.red);
+        String myMessage = "";
+        if (this.level <= MAX_LEVEL) {
+            myMessage = "Game Over";
+        } else myMessage = "You winn!";
+        message.title(myMessage, 0, message.getHeight());
+        this.add(message);
+        backButtonGame();
         this.repaint();
     }
 
     protected void paintComponent(Graphics g) {
         synchronized (computerBall) {
             super.paintComponent(g);
-            this.imageIcon.paintIcon(this,g,-25,0);
+            this.backGround.paintIcon(this, g, -25, 0);
             this.cannon.paint(g);
             synchronized (computerBall) {
                 for (Ball ball : this.computerBall) {
@@ -135,7 +147,7 @@ public class PlayPanel extends BasicJPanel {
 
     public Ball randomBall() {
         Random random = new Random();
-        Color color = Color.getHSBColor((float)Math.random(), 1, (float)Math.random());
+        Color color = Color.getHSBColor((float) Math.random(), 1, (float) Math.random());
         return new Ball(random.nextInt(getWidth() - 200) + 20, 20, color);
     }
 
@@ -152,5 +164,23 @@ public class PlayPanel extends BasicJPanel {
     public void hit() {
         spentLives++;
         this.setLevelText();
+    }
+
+    public void backButtonGame() {
+        addButton(() -> new MainGame(Const.MAIN_WINDOW_W, Const.MAIN_WINDOW_H), this.getHeight() - 300, "CLICK TO PLAY AGAIN");
+        addButton((MainStartOption::new), this.getHeight() - 200, "CLICK TO BACK");
+
+    }
+
+    public void addButton(Supplier<JFrame> jFrameSupplier, int y, String title) {
+        Button buttonBack = new Button(title);
+        buttonBack.setBounds(0, y, Const.MAIN_WINDOW_W, 100);
+        buttonBack.setBackground(Color.green.darker());
+        buttonBack.addActionListener((e -> {
+            JFrame jFrame = jFrameSupplier.get();
+            jFrame.setVisible(true);
+            (SwingUtilities.getAncestorOfClass(JFrame.class, this)).setVisible(false);
+        }));
+        this.add(buttonBack);
     }
 }

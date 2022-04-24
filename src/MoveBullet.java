@@ -42,8 +42,6 @@ public class MoveBullet extends MyRunnable {
                         if (bullet.collision(ball)) {
                             ball.hit();
                             myPlay.setPoints();
-//                            myPlay.setPoints();
-//                            myPlay.setPointsPlayer();
                             bulletsToRemove.add(bullet);
                             if (ball.isDead()) {
                                 ballsToRemove.add(ball);

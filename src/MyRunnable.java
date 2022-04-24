@@ -1,7 +1,7 @@
 public abstract class MyRunnable implements Runnable {
     private boolean running = true;
     protected final PlayPanel myPlay;
-    private static final int speed=16;
+    private static final int SPEED =16;
 
     public MyRunnable(PlayPanel myPlay) {
         this.myPlay = myPlay;
@@ -17,7 +17,7 @@ public abstract class MyRunnable implements Runnable {
     public void run() {
         while (running) {
             this._run();
-            Utils.sleep(speed);
+            Utils.sleep(SPEED);
         }
     }
 }

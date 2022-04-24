@@ -9,8 +9,5 @@ import javax.swing.*;
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.setLocationRelativeTo(null);
         }
-        public void hideAll(){
-            this.setVisible(false);
-        }
     }
 

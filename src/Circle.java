@@ -11,8 +11,4 @@ public class Circle extends ShapeDefined{
         graphics.fillOval(this.getX(), this.getY(), this.getW(), this.getH());
 
     }
-
-    private int getNewDimension(int num) {
-        return (num > 40) ? num / 5 : 0;
-    }
 }
