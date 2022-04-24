@@ -20,7 +20,7 @@ public class ExplanationGame extends BasicJFrame{
         JLabel textMenu2=addJLabel("Right ➡",X,textMenu1.getY()+textMenu1.getHeight(),WIDTH,HEIGHT, font);
         JLabel textMenu3=addJLabel("Space = Shots \uD83D\uDD2B",X,textMenu2.getY()+textMenu2.getHeight(),WIDTH,HEIGHT, font);
         JLabel textMenu4=addJLabel("Life Span = 3 ",X,textMenu3.getY()+textMenu3.getHeight(),WIDTH,HEIGHT, font);
-        JLabel textMenu5 = addJLabel(" The goal: you have 10 level! you need to escape the bullets"
+        JLabel textMenu5 = addJLabel(" The goal: you have 7 level! you need to escape the bullets"
                 , X, textMenu4.getY()+textMenu4.getHeight(), WIDTH,HEIGHT, font);
     }
     public JLabel addJLabel (String s, int x, int y, int w, int h, Font font) {

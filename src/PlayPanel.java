@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 
 public class PlayPanel extends BasicJPanel {
     public static final int START_LIVES = 3;
-    private static final int MAX_LEVEL = 10;
+    private static final int MAX_LEVEL = 7;
 
 
     private SpaceListener spaceDetector;
@@ -19,12 +19,14 @@ public class PlayPanel extends BasicJPanel {
     private int level;
     private JLabel levelText;
     private ImageIcon backGround;
+    private int hpBall;
 
 
     public PlayPanel(int x, int y, int width, int height) {
         super(x, y, width, height, Color.WHITE);
         this.setBounds(x, y, width, height);
         this.computerBall = new ArrayList<>();
+        this.hpBall=0;
         this.bullets = new ArrayList<>();
         this.allRunnableMethods = new ArrayList<>();
         this.cannon = new Cannon();
@@ -43,6 +45,9 @@ public class PlayPanel extends BasicJPanel {
         this.addLastBall();
         moveComputerBallLoop();
         message();
+    }
+    public void changeHp(){
+        this.hpBall++;
     }
 
     public void setLevelText() {
@@ -148,7 +153,8 @@ public class PlayPanel extends BasicJPanel {
     public Ball randomBall() {
         Random random = new Random();
         Color color = Color.getHSBColor((float) Math.random(), 1, (float) Math.random());
-        return new Ball(random.nextInt(getWidth() - 200) + 20, 20, color);
+        changeHp();
+        return new Ball(random.nextInt(getWidth() - 200) + 20, 20,hpBall, color);
     }
 
     public void moveBall(Ball ball) {

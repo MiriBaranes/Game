@@ -6,7 +6,6 @@ public class Ball extends Circle {
     private int hp;
     private static final int START_SPEED_X = 2;
     private static final int START_SPEED_Y = -4;
-    private static int startHp = 1;
     private static final Random RANDOM = new Random();
 
     private int speedX;
@@ -20,18 +19,10 @@ public class Ball extends Circle {
         speedY = START_SPEED_Y * directionY;
         this.hp = hp;
     }
-
-    public Ball(int x, int y, Color color) {
-        this(x, y, startHp++, color);
-    }
-
     public Ball(Ball ball) {
         this(ball.getX(), ball.getY(), ball.hp, ball.getColor());
         speedX = -ball.speedX;
         speedY = ball.speedY;
-    }
-    public static void startHp(){
-        startHp=1;
     }
 
     public Ball(int x, int y, int hp, Color color) {
