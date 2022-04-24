@@ -69,8 +69,8 @@ public class Cannon {
         Circle life2 = new Circle(LIFE2_X, LIFE2_Y, LIFE_W, LIFE_H, Color.RED);//life1
         Circle life3 = new Circle(LIFE3_X, LIFE3_Y, LIFE_W, LIFE_H, Color.RED);//life1
         this.life = new Circle[]{life1, life2, life3};
-        this.gun1 = new MyRectangle(CRAFT_X, GUN1_Y, GUN_W, GUN_H, Color.BLACK);
-        this.gun2 = new MyRectangle(GUN2_X, GUN2_Y, GUN_W, GUN_H, Color.BLACK);
+        this.gun1 = new MyRectangle(CRAFT_X, GUN1_Y, GUN_W, GUN_H, Color.black);
+        this.gun2 = new MyRectangle(GUN2_X, GUN2_Y, GUN_W, GUN_H, Color.black);
         this.gun3 = new MyRectangle(GUN3_X, GUN3_Y, GUN_W, GUN_H, null);
     }
 
