@@ -109,8 +109,10 @@ public class PlayPanel extends BasicJPanel {
     }
 
     public void stop() {
+        this.levelText.setVisible(false);
         for (MyRunnable myRunnable : this.allRunnableMethods) {
             myRunnable.stop();
+            ///this.getHeight() / 2 - 100
         }
         BasicJPanel message = new BasicJPanel(0, this.getHeight() / 2 - 100, this.getWidth(), 100, Color.red);
         String myMessage = "";
