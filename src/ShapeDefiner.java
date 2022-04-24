@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-public abstract class ShapeDefined {
+public abstract class ShapeDefiner {
     private int x;
     private int y;
     private int w;
@@ -9,7 +9,7 @@ public abstract class ShapeDefined {
     private Color color;
 
 
-    public ShapeDefined(int x, int y, int w, int h, Color color) {
+    public ShapeDefiner(int x, int y, int w, int h, Color color) {
         this.x = x;
         this.y = y;
         this.w = w;

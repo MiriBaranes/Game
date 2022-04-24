@@ -112,7 +112,6 @@ public class PlayPanel extends BasicJPanel {
         this.levelText.setVisible(false);
         for (MyRunnable myRunnable : this.allRunnableMethods) {
             myRunnable.stop();
-            ///this.getHeight() / 2 - 100
         }
         BasicJPanel message = new BasicJPanel(0, this.getHeight() / 2 - 100, this.getWidth(), 100, Color.red);
         String myMessage = "";
@@ -175,8 +174,8 @@ public class PlayPanel extends BasicJPanel {
     }
 
     public void backButtonGame() {
-        addButton(() -> new MainGame(Const.MAIN_WINDOW_W, Const.MAIN_WINDOW_H), this.getHeight() - 300, "CLICK TO PLAY AGAIN");
-        addButton((MainStartOption::new), this.getHeight() - 200, "CLICK TO BACK");
+        addButton(() -> new GameWindow(Const.MAIN_WINDOW_W, Const.MAIN_WINDOW_H), this.getHeight() - 300, "CLICK TO PLAY AGAIN");
+        addButton((MainGame::new), this.getHeight() - 200, "CLICK TO BACK");
 
     }
 

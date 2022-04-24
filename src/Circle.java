@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Circle extends ShapeDefined{
+public class Circle extends ShapeDefiner {
 
     public Circle(int x, int y, int width, int height, Color color) {
         super(x,y,width, height, color);

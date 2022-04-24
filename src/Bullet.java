@@ -7,11 +7,11 @@ public class Bullet {
     public static final int HEIGHT = 15;
 
     private MyRectangle body;
-    private HalfC bulletHead;
+    private HalfCircle bulletHead;
 
     public Bullet(int x, int y) {
         this.body = new MyRectangle(x, y, WIDTH, HEIGHT, Color.blue);
-        this.bulletHead = new HalfC(x, y, WIDTH, HEIGHT, 360, 180, Color.CYAN);
+        this.bulletHead = new HalfCircle(x, y, WIDTH, HEIGHT, 360, 180, Color.CYAN);
     }
 
 

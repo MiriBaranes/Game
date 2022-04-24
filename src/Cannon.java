@@ -4,7 +4,7 @@
 
 public class Cannon {
 
-    private ArrayList<ShapeDefined> myAlien = new ArrayList<>();
+    private ArrayList<ShapeDefiner> myAlien = new ArrayList<>();
     private Circle body;
     private Circle[] life;
     private MyRectangle gun1;
@@ -60,11 +60,11 @@ public class Cannon {
     public Cannon(){
         this.body = new Circle(CRAFT_X, CRAFT_Y, CRAFT_W, CRAFT_H, Color.PINK);
         this.myAlien.add(new Circle(SEAT_X, SEAT_Y, SEAT_W, SEAT_H, Color.BLACK));
-        this.myAlien.add(new HalfC(ALIEN_BODY_X, ALIEN_BODY_Y, ALIEN_BODY_W, ALIEN_BODY_H, 360, 180, Color.GREEN));//BODY
+        this.myAlien.add(new HalfCircle(ALIEN_BODY_X, ALIEN_BODY_Y, ALIEN_BODY_W, ALIEN_BODY_H, 360, 180, Color.GREEN));//BODY
         this.myAlien.add(new MyRectangle(ALIEN_NECK_X, ALIEN_NECK_Y, ALIEN_NECK_W, ALIEN_NECK_H, Color.GREEN));//NECK
         this.myAlien.add(new Circle(ALIEN_HEAD_X, ALIEN_HEAD_Y, ALIEN_HEAD_W, ALIEN_HEAD_H, Color.GREEN));//HEAD
-        this.myAlien.add(new HalfC(LEFT_EYE_X, EYE_Y, EYE_W, EYE_H, 360, 180, Color.BLACK));//left Eye
-        this.myAlien.add(new HalfC(RIGHT_EYE_X, EYE_Y, EYE_W, EYE_H, 360, 180, Color.BLACK));//Right eye;
+        this.myAlien.add(new HalfCircle(LEFT_EYE_X, EYE_Y, EYE_W, EYE_H, 360, 180, Color.BLACK));//left Eye
+        this.myAlien.add(new HalfCircle(RIGHT_EYE_X, EYE_Y, EYE_W, EYE_H, 360, 180, Color.BLACK));//Right eye;
         Circle life1 = new Circle(LIFE1_X, LIFE1_Y, LIFE_W, LIFE_H, Color.RED);//life1
         Circle life2 = new Circle(LIFE2_X, LIFE2_Y, LIFE_W, LIFE_H, Color.RED);//life1
         Circle life3 = new Circle(LIFE3_X, LIFE3_Y, LIFE_W, LIFE_H, Color.RED);//life1
@@ -99,7 +99,7 @@ public class Cannon {
     }
     public void paint(Graphics graphics) {
         this.body.paint(graphics);
-        for (ShapeDefined shape : this.myAlien) {
+        for (ShapeDefiner shape : this.myAlien) {
             shape.paint(graphics);
         }
         for (int i=0; i< life.length; i++){
@@ -114,7 +114,7 @@ public class Cannon {
         int futurePlace = this.body.getX() + movement;
         if (futurePlace < 0 || Const.MAIN_WINDOW_W - this.body.getW() < futurePlace)
             return;
-        for (ShapeDefined shape : this.myAlien) {
+        for (ShapeDefiner shape : this.myAlien) {
             shape.setX(shape.getX() + movement);
         }
         for (int i = 0; i < life.length; i++) {
@@ -132,7 +132,7 @@ public class Cannon {
                 ball.getY(),
                 ball.getW(),
                 ball.getH());
-        for (ShapeDefined shapeDefined: this.myAlien){
+        for (ShapeDefiner shapeDefined: this.myAlien){
             if (myCollision.intersects(shapeDefined.getX(),shapeDefined.getY(),shapeDefined.getW(),shapeDefined.getH())){
                 collision=true;
                 break;

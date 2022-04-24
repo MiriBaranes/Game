@@ -1,10 +1,10 @@
 import java.awt.*;
 
-public class HalfC extends ShapeDefined {
+public class HalfCircle extends ShapeDefiner {
     private int statAngle;
     private int andAngle;
 
-    public HalfC(int x, int y, int width, int height, int statAngle, int andAngle, Color color) {
+    public HalfCircle(int x, int y, int width, int height, int statAngle, int andAngle, Color color) {
         super(x, y, width, height, color);
         this.statAngle = statAngle;
         this.andAngle = andAngle;
