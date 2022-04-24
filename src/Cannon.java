@@ -11,28 +11,28 @@ public class Cannon {
     private MyRectangle gun2;
     private MyRectangle gun3;
     //private MyRectangle [] gun;
-    public final static int CRAFT_W = 150;
-    public final static int CRAFT_H = 80;
+    public final static int CRAFT_W = 100;//150
+    public final static int CRAFT_H = 60;//80
     public final static int CRAFT_X = (Const.MAIN_WINDOW_W - CRAFT_W)/2;
     public final static int CRAFT_Y = Const.MAIN_WINDOW_H - CRAFT_H - 50;
-    public final static int SEAT_H = 40;
-    public final static int SEAT_W = 70;
+    public final static int SEAT_H = 20;//40
+    public final static int SEAT_W = 50;//70
     public final static int SEAT_X = CRAFT_X + (CRAFT_W -  SEAT_W)/2;
     public final static int SEAT_Y = CRAFT_Y + 10;
-    public final static int ALIEN_BODY_W = 30;
-    public final static int ALIEN_BODY_H = 50;
+    public final static int ALIEN_BODY_W = 15;//30
+    public final static int ALIEN_BODY_H = 25;//50
     public final static int ALIEN_BODY_X = CRAFT_X + (CRAFT_W - ALIEN_BODY_W)/2;
-    public final static int ALIEN_BODY_Y = CRAFT_Y + 20;
-    public final static int ALIEN_NECK_W = 12;
-    public final static int ALIEN_NECK_H = 10;
+    public final static int ALIEN_BODY_Y = CRAFT_Y + 18;//20
+    public final static int ALIEN_NECK_W = 6;//12
+    public final static int ALIEN_NECK_H = 5;//10
     public final static int ALIEN_NECK_X = ALIEN_BODY_X + (ALIEN_BODY_W-ALIEN_NECK_W)/2;
     public final static int ALIEN_NECK_Y = ALIEN_BODY_Y - ALIEN_NECK_H/2;
-    public final static int ALIEN_HEAD_W = 62;
-    public final static int ALIEN_HEAD_H = 40;
+    public final static int ALIEN_HEAD_W = 50;//62
+    public final static int ALIEN_HEAD_H = 30;//40
     public final static int ALIEN_HEAD_X = CRAFT_X + (CRAFT_W-ALIEN_HEAD_W)/2;
     public final static int ALIEN_HEAD_Y = ALIEN_NECK_Y - ALIEN_HEAD_H;
-    public final static int EYE_H = 30;
-    public final static int EYE_W = 16;
+    public final static int EYE_H = 30;//30
+    public final static int EYE_W = 16;//16
     public final static int LEFT_EYE_X = ALIEN_HEAD_X + ALIEN_HEAD_W/4 - EYE_W/2;
     public final static int EYE_Y = ALIEN_HEAD_Y + ALIEN_HEAD_H/2 - 10;
     public final static int RIGHT_EYE_X = ALIEN_HEAD_X + 3*ALIEN_HEAD_W/4 - EYE_W/2;
