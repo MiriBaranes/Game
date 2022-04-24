@@ -36,8 +36,8 @@ public class Cannon {
     public final static int LEFT_EYE_X = ALIEN_HEAD_X + ALIEN_HEAD_W/4 - EYE_W/2;
     public final static int EYE_Y = ALIEN_HEAD_Y + ALIEN_HEAD_H/2 - 10;
     public final static int RIGHT_EYE_X = ALIEN_HEAD_X + 3*ALIEN_HEAD_W/4 - EYE_W/2;
-    public final static int LIFE_H = 15;
-    public final static int LIFE_W = 15;
+    public final static int LIFE_H = 10;
+    public final static int LIFE_W = 10;
     public final static int LIFE1_X = CRAFT_X + (CRAFT_W/3 - LIFE_W)/2;
     public final static int LIFE1_Y = SEAT_Y + SEAT_H - 20;
     public final static int LIFE2_X = CRAFT_X + (CRAFT_W -LIFE_W)/2;
