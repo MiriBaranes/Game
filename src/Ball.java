@@ -19,6 +19,7 @@ public class Ball extends Circle {
         speedY = START_SPEED_Y * directionY;
         this.hp = hp;
     }
+
     public Ball(Ball ball) {
         this(ball.getX(), ball.getY(), ball.hp, ball.getColor());
         speedX = -ball.speedX;
@@ -47,8 +48,6 @@ public class Ball extends Circle {
 
     public void hit() {
         this.hp--;
-        if (this.hp > 0)
-            System.out.println("now ball hp: " + this.hp);
         this.setH(hpToSize(this.hp));
         this.setW(hpToSize(this.hp));
         up();
