@@ -16,8 +16,10 @@ public class MoveBall extends MyRunnable {
             }
             myPlay.getComputerBall().removeIf(ball -> ball.getW() == 0);
             if (myPlay.getComputerBall().size() <= 0) {
-                myPlay.addLastBall();
                 myPlay.setLevel();
+                if (this.myPlay.getLevel()<PlayPanel.MAX_LEVEL){
+                    myPlay.addLastBall();
+                }
             }
             this.myPlay.repaint();
         }

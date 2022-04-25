@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 
 public class PlayPanel extends BasicJPanel {
     public static final int START_LIVES = 3;
-    private static final int MAX_LEVEL = 7;
+    public static final int MAX_LEVEL = 7;
     public final int MESSAGE_HEIGHT = 100;
     public final String GAME_OVER_MESSAGE = "Game Over!";
     public final String WON_MESSAGE = "You won!";
@@ -78,6 +78,9 @@ public class PlayPanel extends BasicJPanel {
     public void setLevel() {
         this.level++;
         setLevelText();
+    }
+    public int getLevel(){
+        return this.level;
     }
 
     public MyAlien getCannon() {
