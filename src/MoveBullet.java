@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
 public class MoveBullet extends MyRunnable {
-    private Cannon cannon;
+    private MyAlien cannon;
 
     private SpaceListener spaceDetector;
     private ArrayList<Bullet> bullets;
 
 
-    public MoveBullet(PlayPanel myPlay, Cannon cannon, SpaceListener spaceDetector) {
+    public MoveBullet(PlayPanel myPlay, MyAlien cannon, SpaceListener spaceDetector) {
         super(myPlay);
         this.cannon = cannon;
         this.bullets = myPlay.getBullets();

@@ -7,6 +7,12 @@ import java.util.function.Supplier;
 public class PlayPanel extends BasicJPanel {
     public static final int START_LIVES = 3;
     private static final int MAX_LEVEL = 7;
+    public final int MESSAGE_HEIGHT = 100;
+    public final String GAME_OVER_MESSAGE = "Game Over!";
+    public final String WON_MESSAGE = "You won!";
+    public final String COME_BACK_MESSAGE = "Click to go back!";
+    public final String PLAY_AGAIN_MESSAGE = "Click to play again!";
+    public final int DISTANCE = 20;
 
 
     private SpaceListener spaceDetector;
@@ -14,7 +20,7 @@ public class PlayPanel extends BasicJPanel {
     private ArrayList<Ball> computerBall;
     private ArrayList<MyRunnable> allRunnableMethods;
     private int spentLives;
-    private Cannon cannon;
+    private MyAlien cannon;
     private int points;
     private int level;
     private JLabel levelText;
@@ -29,7 +35,7 @@ public class PlayPanel extends BasicJPanel {
         this.hpBall=0;
         this.bullets = new ArrayList<>();
         this.allRunnableMethods = new ArrayList<>();
-        this.cannon = new Cannon();
+        this.cannon = new MyAlien();
         this.spaceDetector = new SpaceListener();
         this.spentLives = 0;
         this.points = 0;
@@ -44,7 +50,7 @@ public class PlayPanel extends BasicJPanel {
         moveBullet();
         this.addLastBall();
         moveComputerBallLoop();
-        message();
+        initMessage();
     }
     public void changeHp(){
         this.hpBall++;
@@ -55,12 +61,12 @@ public class PlayPanel extends BasicJPanel {
                 + "   Score: " + this.points);
     }
 
-    public void message() {
-        this.levelText = new JLabel("Level: " + this.level + "    Lives left: " + (START_LIVES - this.spentLives)
-                + "   Score: " + this.points, SwingConstants.CENTER);
+    public void initMessage() {
+        this.levelText = new JLabel("", SwingConstants.CENTER);
         levelText.setBounds(0, 0, this.getWidth(), Const.FONT.getSize());
         levelText.setFont(Const.FONT);
         levelText.setForeground(Color.red.darker());
+        setLevelText();
         this.add(levelText);
     }
 
@@ -74,7 +80,7 @@ public class PlayPanel extends BasicJPanel {
         setLevelText();
     }
 
-    public Cannon getCannon() {
+    public MyAlien getCannon() {
         return this.cannon;
     }
 
@@ -113,11 +119,11 @@ public class PlayPanel extends BasicJPanel {
         for (MyRunnable myRunnable : this.allRunnableMethods) {
             myRunnable.stop();
         }
-        BasicJPanel message = new BasicJPanel(0, this.getHeight() / 2 - 100, this.getWidth(), 100, Color.red);
+        BasicJPanel message = new BasicJPanel(0, this.getHeight() / 2 - MESSAGE_HEIGHT, this.getWidth(), MESSAGE_HEIGHT, Color.red);
         String myMessage = "";
         if (this.level <= MAX_LEVEL) {
-            myMessage = "Game Over";
-        } else myMessage = "You winn!";
+            myMessage = GAME_OVER_MESSAGE;
+        } else myMessage = WON_MESSAGE;
         message.title(myMessage, 0, message.getHeight());
         this.add(message);
         backButtonGame();
@@ -155,14 +161,14 @@ public class PlayPanel extends BasicJPanel {
         Random random = new Random();
         Color color = Color.getHSBColor((float) Math.random(), 1, (float) Math.random());
         changeHp();
-        return new Ball(random.nextInt(getWidth() - 200) + 20, 20,hpBall, color);
+        return new Ball(random.nextInt(getWidth() - Const.MAIN_WINDOW_W/5) + DISTANCE, DISTANCE,hpBall, color);
     }
 
     public void moveBall(Ball ball) {
         int hw = ball.getW();
         if (ball.getY() <= 0 || this.getHeight() - hw <= ball.getY())
             ball.flipY();
-        if (ball.getX() <= 0 || this.getWidth() <= ball.getX() + hw - 10)
+        if (ball.getX() <= 0 || this.getWidth() <= ball.getX() + hw - DISTANCE/2)
             ball.flipX();
 
         ball.step();
@@ -174,14 +180,14 @@ public class PlayPanel extends BasicJPanel {
     }
 
     public void backButtonGame() {
-        addButton(() -> new GameWindow(Const.MAIN_WINDOW_W, Const.MAIN_WINDOW_H), this.getHeight() - 300, "CLICK TO PLAY AGAIN");
-        addButton((MainGame::new), this.getHeight() - 200, "CLICK TO BACK");
+        addButton(() -> new GameWindow(Const.MAIN_WINDOW_W, Const.MAIN_WINDOW_H), this.getHeight() - MESSAGE_HEIGHT*3, PLAY_AGAIN_MESSAGE);
+        addButton((MainGame::new), this.getHeight() - MESSAGE_HEIGHT*2, COME_BACK_MESSAGE);
 
     }
 
     public void addButton(Supplier<JFrame> jFrameSupplier, int y, String title) {
         Button buttonBack = new Button(title);
-        buttonBack.setBounds(0, y, Const.MAIN_WINDOW_W, 100);
+        buttonBack.setBounds(0, y, Const.MAIN_WINDOW_W, MESSAGE_HEIGHT);
         buttonBack.setBackground(Color.green.darker());
         buttonBack.addActionListener((e -> {
             JFrame jFrame = jFrameSupplier.get();

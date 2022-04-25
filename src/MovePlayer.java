@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 public class MovePlayer extends MyRunnable {
     private MovementPlayer movementPlayer;
-    private Cannon cannon;
+    private MyAlien cannon;
     private boolean touching = false;
 
-    public MovePlayer(PlayPanel playPanel, Cannon myCannon) {
+    public MovePlayer(PlayPanel playPanel, MyAlien myCannon) {
         super(playPanel);
         this.cannon = myCannon;
 

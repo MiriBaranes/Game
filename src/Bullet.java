@@ -5,13 +5,15 @@ public class Bullet {
 
     public static final int WIDTH = 5;
     public static final int HEIGHT = 15;
+    public static final int STRAIGHT_ANGEL = 180;
+    public static final int FULL_TURN_ANGLE = 360;
 
     private MyRectangle body;
     private HalfCircle bulletHead;
 
     public Bullet(int x, int y) {
         this.body = new MyRectangle(x, y, WIDTH, HEIGHT, Color.blue);
-        this.bulletHead = new HalfCircle(x, y, WIDTH, HEIGHT, 360, 180, Color.CYAN);
+        this.bulletHead = new HalfCircle(x, y, WIDTH, HEIGHT, FULL_TURN_ANGLE, STRAIGHT_ANGEL, Color.CYAN);
     }
 
 

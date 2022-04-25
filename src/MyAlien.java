@@ -2,7 +2,7 @@
         import java.awt.*;
         import java.util.ArrayList;
 
-public class Cannon {
+public class MyAlien {
 
     private ArrayList<ShapeDefiner> myAlien = new ArrayList<>();
     private Circle body;
@@ -57,7 +57,7 @@ public class Cannon {
 
 
 
-    public Cannon(){
+    public MyAlien(){
         this.body = new Circle(CRAFT_X, CRAFT_Y, CRAFT_W, CRAFT_H, Color.PINK);
         this.myAlien.add(new Circle(SEAT_X, SEAT_Y, SEAT_W, SEAT_H, Color.BLACK));
         this.myAlien.add(new HalfCircle(ALIEN_BODY_X, ALIEN_BODY_Y, ALIEN_BODY_W, ALIEN_BODY_H, 360, 180, Color.GREEN));//BODY
